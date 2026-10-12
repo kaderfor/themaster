@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demande envoyée — THE MASTER</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== EN-TÊTE ===== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo">THE <span>MASTER</span></a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="formation.html">Se former</a>
+        <a href="entreprendre.html">Entreprendre</a>
+        <a href="index.html#formateur">Le formateur</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html#choix" class="btn btn-primary">Commencer</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section section-alt" style="padding-top:50px;">
+      <div class="container">
+        <div class="confirm-card">
+
+          <div class="confirm-icon">⏳</div>
+          <span class="status-badge status-pending">Paiement en attente de confirmation</span>
+          <h1 style="margin-top:18px;" id="titre">Merci, votre demande est enregistrée</h1>
+          <p style="color:var(--muted);" id="intro">Notre équipe va vérifier votre paiement. Votre accès sera confirmé une fois cette vérification terminée.</p>
+
+          <!-- Récapitulatif (rempli par le script) -->
+          <div class="payment-details" id="recap" style="text-align:left; margin-top:26px;"></div>
+
+          <div class="steps" style="text-align:left;">
+            <div class="step"><h4>Envoyez votre preuve</h4><p>Dans WhatsApp, joignez la capture du SMS de paiement et envoyez le message.</p></div>
+            <div class="step"><h4>Vérification</h4><p>Notre équipe contrôle votre paiement manuellement.</p></div>
+            <div class="step"><h4>Confirmation</h4><p>Une fois validé, vous recevez votre accès et les prochaines étapes.</p></div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:12px; margin-top:8px;">
+            <a id="btn-renvoyer" data-wa href="#" class="btn btn-whatsapp btn-block">💬 Ouvrir WhatsApp</a>
+            <a href="index.html" class="btn btn-dark btn-block">Retour à l'accueil</a>
+          </div>
+
+          <p class="pending-note">Un doute sur votre paiement ? Écrivez-nous sur WhatsApp en indiquant votre nom et votre référence de transaction.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== PIED DE PAGE ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo">THE <span>MASTER</span></a>
+          <p style="margin-top:12px;">Transformer les habitudes pour construire l'excellence.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="formation.html">Se former</a></li>
+            <li><a href="entreprendre.html">Entreprendre</a></li>
+            <li><a href="index.html#formateur">Le formateur</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a data-wa href="#">WhatsApp</a></li>
+            <li><a data-mail href="#"><span data-mail-text></span></a></li>
+            <li><a data-tel href="#"><span data-tel-text></span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© <span data-year></span> THE MASTER. Tous droits réservés.</div>
+    </div>
+  </footer>
+
+  <a class="wa-float" data-wa href="#" aria-label="Discuter sur WhatsApp">💬</a>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let commande = null;
+      try { commande = JSON.parse(sessionStorage.getItem("themaster_commande")); } catch (e) {}
+
+      const recap = document.getElementById("recap");
+
+      if (!commande) {
+        // Page ouverte sans inscription préalable
+        recap.style.display = "none";
+        document.getElementById("titre").textContent = "Aucune inscription en cours";
+        document.getElementById("intro").textContent = "Choisissez un pack pour vous inscrire, ou contactez-nous si vous avez déjà envoyé votre demande.";
+        return;
+      }
+
+      document.getElementById("titre").textContent = "Merci " + commande.nom.split(" ")[0] + ", votre demande est enregistrée";
+
+      const lignes = [
+        ["Pack", commande.pack],
+        ["Montant", commande.montant],
+        ["Moyen de paiement", commande.paiement],
+        ["Référence de transaction", commande.reference]
+      ];
+      lignes.forEach(([label, valeur]) => {
+        const div = document.createElement("div");
+        div.className = "pay-line";
+        const a = document.createElement("span");
+        a.textContent = label;
+        const b = document.createElement("strong");
+        b.textContent = valeur;
+        div.append(a, b);
+        recap.appendChild(div);
+      });
+
+      // Le bouton rouvre WhatsApp avec le même message (si le premier envoi n'a pas abouti)
+      const btn = document.getElementById("btn-renvoyer");
+      btn.textContent = "💬 Renvoyer le message sur WhatsApp";
+      btn.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(commande.message);
+      btn.target = "_blank";
+      btn.rel = "noopener";
+      btn.removeAttribute("data-wa"); // empêche main.js de remplacer ce lien
+    });
+  </script>
+</body>
+</html>

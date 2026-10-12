@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription — THE MASTER</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== EN-TÊTE ===== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo">THE <span>MASTER</span></a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="formation.html">Se former</a>
+        <a href="entreprendre.html">Entreprendre</a>
+        <a href="index.html#formateur">Le formateur</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html#choix" class="btn btn-primary">Commencer</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section section-alt" style="padding-top:50px;">
+      <div class="container">
+
+        <div class="form-intro">
+          <span class="eyebrow">Inscription</span>
+          <h1>Finalisez votre inscription</h1>
+          <p>Trois étapes simples. Votre paiement sera vérifié par notre équipe avant la validation de votre accès.</p>
+        </div>
+
+        <div class="form-card">
+          <form id="form-inscription" novalidate>
+
+            <!-- Récapitulatif du pack -->
+            <div class="recap-box">
+              <div>
+                <div style="font-size:0.78rem; color:#aab6c9;">Pack choisi</div>
+                <div class="recap-pack" id="recap-nom">Aucun pack sélectionné</div>
+              </div>
+              <div class="recap-price" id="recap-prix">—</div>
+            </div>
+
+            <!-- ÉTAPE 1 : informations -->
+            <div class="form-block">
+              <div class="form-block-title">1. Vos informations</div>
+
+              <div class="form-group" id="g-nom">
+                <label for="nom">Nom et prénom</label>
+                <input type="text" id="nom" name="nom" autocomplete="name" placeholder="Ex : Awa Traoré">
+                <div class="error-msg">Veuillez entrer votre nom et prénom.</div>
+              </div>
+
+              <div class="form-group" id="g-whatsapp">
+                <label for="whatsapp">Numéro WhatsApp</label>
+                <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" inputmode="tel" placeholder="Ex : 70 00 00 00">
+                <div class="hint">Le numéro sur lequel nous pouvons vous joindre.</div>
+                <div class="error-msg">Veuillez entrer un numéro valide.</div>
+              </div>
+
+              <div class="form-group" id="g-email">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="Ex : awa@gmail.com">
+                <div class="error-msg">Veuillez entrer une adresse email valide.</div>
+              </div>
+
+              <div class="form-group" id="g-pays">
+                <label for="pays">Pays</label>
+                <select id="pays" name="pays">
+                  <option value="">— Choisissez votre pays —</option>
+                  <option>Burkina Faso</option>
+                  <option>Côte d'Ivoire</option>
+                  <option>Mali</option>
+                  <option>Niger</option>
+                  <option>Togo</option>
+                  <option>Bénin</option>
+                  <option>Sénégal</option>
+                  <option>Autre</option>
+                </select>
+                <div class="error-msg">Veuillez choisir votre pays.</div>
+              </div>
+              <div class="form-group" id="g-mode">
+                <label for="mode">Mode de formation</label>
+                <select id="mode" name="mode">
+                  <option value="">— Choisissez —</option>
+                  <option>En présentiel</option>
+                  <option>En ligne</option>
+                </select>
+                <div class="error-msg">Veuillez choisir un mode de formation.</div>
+              </div>
+              <div class="form-group" id="g-pack">
+                <label for="pack">Pack choisi</label>
+                <select id="pack" name="pack">
+                  <option value="">— Choisissez un pack —</option>
+                </select>
+                <div class="error-msg">Veuillez choisir un pack.</div>
+              </div>
+            </div>
+
+            <!-- ÉTAPE 2 : moyen de paiement -->
+            <div class="form-block">
+              <div class="form-block-title">2. Choisissez votre moyen de paiement</div>
+
+              <div class="form-group" id="g-paiement">
+                <div class="payment-options">
+                  <label class="payment-option">
+                    <input type="radio" name="paiement" value="orange">
+                    <span class="payment-card"><span class="payment-dot dot-orange"></span>Orange Money</span>
+                  </label>
+                  <label class="payment-option">
+                    <input type="radio" name="paiement" value="moov">
+                    <span class="payment-card"><span class="payment-dot dot-moov"></span>Moov Money</span>
+                  </label>
+                  <label class="payment-option">
+                    <input type="radio" name="paiement" value="wave">
+                    <span class="payment-card"><span class="payment-dot dot-wave"></span>Wave</span>
+                  </label>
+                </div>
+                <div class="error-msg">Veuillez choisir un moyen de paiement.</div>
+              </div>
+
+              <!-- Rempli automatiquement par inscription.js -->
+              <div class="payment-details" id="payment-details"></div>
+            </div>
+
+            <!-- ÉTAPE 3 : confirmation du paiement -->
+            <div class="form-block collapsible" id="confirm-block" style="margin-top:0;">
+              <div class="form-block-title">3. Confirmation du paiement</div>
+              <p style="color:var(--muted); font-size:0.9rem; margin-bottom:16px;">Une fois le paiement effectué, renseignez ces informations. Elles figureront dans votre message WhatsApp.</p>
+
+              <div class="form-group" id="g-reference">
+                <label for="reference">Référence de la transaction</label>
+                <input type="text" id="reference" name="reference" autocomplete="off" placeholder="Ex : MP260109.1234.A56789">
+                <div class="hint">Elle figure dans le SMS de confirmation que vous recevez.</div>
+                <div class="error-msg">Veuillez entrer la référence de la transaction.</div>
+              </div>
+
+              <div class="form-group" id="g-payeur">
+                <label for="payeur">Nom utilisé pour le paiement</label>
+                <input type="text" id="payeur" name="payeur" autocomplete="off" placeholder="Le nom de votre compte Mobile Money">
+                <div class="error-msg">Veuillez entrer le nom utilisé pour le paiement.</div>
+              </div>
+
+              <div class="form-group" id="g-accord">
+                <label class="check-row">
+                  <input type="checkbox" id="accord" name="accord">
+                  <span>Je confirme que les informations sont exactes et que j'ai effectué le paiement indiqué. Je comprends qu'aucun revenu ni résultat n'est garanti.</span>
+                </label>
+                <div class="error-msg">Veuillez cocher cette case pour continuer.</div>
+              </div>
+
+              <button type="submit" class="btn btn-whatsapp btn-block">💬 Envoyer ma demande sur WhatsApp</button>
+              <p class="pending-note">Après l'envoi, votre paiement sera <strong>en attente de confirmation</strong> jusqu'à vérification par notre équipe. Pensez à joindre la capture du SMS de paiement dans WhatsApp.</p>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== PIED DE PAGE ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo">THE <span>MASTER</span></a>
+          <p style="margin-top:12px;">Transformer les habitudes pour construire l'excellence.</p>
+        </div>
+        <div>
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="formation.html">Se former</a></li>
+            <li><a href="entreprendre.html">Entreprendre</a></li>
+            <li><a href="index.html#formateur">Le formateur</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a data-wa href="#">WhatsApp</a></li>
+            <li><a data-mail href="#"><span data-mail-text></span></a></li>
+            <li><a data-tel href="#"><span data-tel-text></span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© <span data-year></span> THE MASTER. Tous droits réservés.</div>
+    </div>
+  </footer>
+
+  <a class="wa-float" data-wa href="#" aria-label="Discuter sur WhatsApp">💬</a>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/inscription.js"></script>
+</body>
+</html>
