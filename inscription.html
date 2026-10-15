@@ -9,11 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="images/logo.png">
+  <link rel="icon" href="images/logo.png">
 </head>
 <body>
 
-  <!-- ===== EN-TÊTE ===== -->
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="logo"><img src="images/logo.png" alt="THE MASTER" class="logo-img"></a>
@@ -26,7 +25,7 @@
         <a href="entreprendre.html">Entreprendre</a>
         <a href="index.html#formateur">Le formateur</a>
         <a href="index.html#contact">Contact</a>
-        <a href="index.html#choix" class="btn btn-primary">Commencer</a>
+        <a href="index.html#accueil" class="btn btn-primary">Commencer</a>
       </nav>
     </div>
   </header>
@@ -42,9 +41,9 @@
         </div>
 
         <div class="form-card">
-          <form id="form-inscription" novalidate>
+          <form id="form-inscription" name="inscription" method="POST" data-netlify="true" novalidate>
+            <input type="hidden" name="form-name" value="inscription">
 
-            <!-- Récapitulatif du pack -->
             <div class="recap-box">
               <div>
                 <div style="font-size:0.78rem; color:#aab6c9;">Pack choisi</div>
@@ -53,7 +52,7 @@
               <div class="recap-price" id="recap-prix">—</div>
             </div>
 
-            <!-- ÉTAPE 1 : informations -->
+            <!-- ÉTAPE 1 -->
             <div class="form-block">
               <div class="form-block-title">1. Vos informations</div>
 
@@ -91,6 +90,15 @@
                 </select>
                 <div class="error-msg">Veuillez choisir votre pays.</div>
               </div>
+
+              <div class="form-group" id="g-pack">
+                <label for="pack">Pack choisi</label>
+                <select id="pack" name="pack">
+                  <option value="">— Choisissez un pack —</option>
+                </select>
+                <div class="error-msg">Veuillez choisir un pack.</div>
+              </div>
+
               <div class="form-group" id="g-mode">
                 <label for="mode">Mode de formation</label>
                 <select id="mode" name="mode">
@@ -100,16 +108,9 @@
                 </select>
                 <div class="error-msg">Veuillez choisir un mode de formation.</div>
               </div>
-              <div class="form-group" id="g-pack">
-                <label for="pack">Pack choisi</label>
-                <select id="pack" name="pack">
-                  <option value="">— Choisissez un pack —</option>
-                </select>
-                <div class="error-msg">Veuillez choisir un pack.</div>
-              </div>
             </div>
 
-            <!-- ÉTAPE 2 : moyen de paiement -->
+            <!-- ÉTAPE 2 -->
             <div class="form-block">
               <div class="form-block-title">2. Choisissez votre moyen de paiement</div>
 
@@ -131,26 +132,24 @@
                 <div class="error-msg">Veuillez choisir un moyen de paiement.</div>
               </div>
 
-              <!-- Rempli automatiquement par inscription.js -->
               <div class="payment-details" id="payment-details"></div>
             </div>
 
-            <!-- ÉTAPE 3 : confirmation du paiement -->
+            <!-- ÉTAPE 3 -->
             <div class="form-block collapsible" id="confirm-block" style="margin-top:0;">
               <div class="form-block-title">3. Confirmation du paiement</div>
-              <p style="color:var(--muted); font-size:0.9rem; margin-bottom:16px;">Une fois le paiement effectué, renseignez ces informations. Elles figureront dans votre message WhatsApp.</p>
-
-              <div class="form-group" id="g-reference">
-                <label for="reference">Référence de la transaction</label>
-                <input type="text" id="reference" name="reference" autocomplete="off" placeholder="Ex : MP260109.1234.A56789">
-                <div class="hint">Elle figure dans le SMS de confirmation que vous recevez.</div>
-                <div class="error-msg">Veuillez entrer la référence de la transaction.</div>
-              </div>
+              <p style="color:var(--muted); font-size:0.9rem; margin-bottom:16px;">Une fois le paiement effectué, indiquez qui a payé. Ces informations figureront dans votre message WhatsApp.</p>
 
               <div class="form-group" id="g-payeur">
-                <label for="payeur">Nom utilisé pour le paiement</label>
+                <label for="payeur">Nom du compte qui a effectué le paiement</label>
                 <input type="text" id="payeur" name="payeur" autocomplete="off" placeholder="Le nom de votre compte Mobile Money">
-                <div class="error-msg">Veuillez entrer le nom utilisé pour le paiement.</div>
+                <div class="error-msg">Veuillez entrer le nom du compte.</div>
+              </div>
+
+              <div class="form-group" id="g-numero">
+                <label for="numero">Numéro qui a effectué le transfert</label>
+                <input type="tel" id="numero" name="numero" inputmode="tel" autocomplete="off" placeholder="Ex : 70 00 00 00">
+                <div class="error-msg">Veuillez entrer le numéro qui a effectué le transfert.</div>
               </div>
 
               <div class="form-group" id="g-accord">
@@ -162,7 +161,7 @@
               </div>
 
               <button type="submit" class="btn btn-whatsapp btn-block">💬 Envoyer ma demande sur WhatsApp</button>
-              <p class="pending-note">Après l'envoi, votre paiement sera <strong>en attente de confirmation</strong> jusqu'à vérification par notre équipe. Pensez à joindre la capture du SMS de paiement dans WhatsApp.</p>
+              <p class="pending-note">Après l'envoi, nous vérifions votre paiement et vous serez contacté. Pensez à joindre la capture du SMS de paiement dans WhatsApp.</p>
             </div>
 
           </form>
@@ -172,7 +171,6 @@
     </section>
   </main>
 
-  <!-- ===== PIED DE PAGE ===== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -197,7 +195,7 @@
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">© <span data-year></span> THE MASTER. Tous droits réservés.</div>
+      <div class="footer-bottom">© <span data-year></span> THE MASTER. Tous droits réservés. <span class="credit">Site conçu par <a href="https://kaderfor.github.io/portfolio-kader/" target="_blank" rel="noopener">TechLab</a></span></div>
     </div>
   </footer>
 
@@ -208,5 +206,3 @@
   <script src="js/inscription.js"></script>
 </body>
 </html>
-
-

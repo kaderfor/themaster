@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const details = document.getElementById("payment-details");
   const confirmBlock = document.getElementById("confirm-block");
 
-  /* ---------- 1. Remplir la liste des packs ---------- */
+  /* ---------- 1. Liste des packs ---------- */
   const labels = {
     Formation: "Parcours A — Formation uniquement",
     Entreprendre: "Parcours B — Entreprendre avec nous"
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     selPack.appendChild(og);
   });
 
-  // Pack présélectionné via l'adresse : inscription.html?pack=pack-1
   const packUrl = new URLSearchParams(location.search).get("pack");
   if (packUrl && CONFIG.packs[packUrl]) selPack.value = packUrl;
 
@@ -135,23 +134,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (g) g.classList.remove("invalid");
   });
 
+  const chiffres = (s) => s.replace(/\D/g, "");
+
   function valider() {
     const v = (id) => document.getElementById(id).value.trim();
-    const chiffres = v("whatsapp").replace(/\D/g, "");
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email"));
 
     const problemes = [
       erreur("g-nom", v("nom").length < 3),
-      erreur("g-whatsapp", chiffres.length < 8),
+      erreur("g-whatsapp", chiffres(v("whatsapp")).length < 8),
       erreur("g-email", !emailOk),
       erreur("g-pays", !v("pays")),
       erreur("g-pack", !selPack.value),
       erreur("g-mode", !v("mode")),
       erreur("g-paiement", !form.elements["paiement"].value),
-      erreur("g-reference", v("reference").length < 4),
       erreur("g-payeur", v("payeur").length < 3),
+      erreur("g-numero", chiffres(v("numero")).length < 8),
       erreur("g-accord", !document.getElementById("accord").checked)
-      
     ];
 
     const premier = form.querySelector(".form-group.invalid");
@@ -159,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return !problemes.some(Boolean);
   }
 
-  /* ---------- 5. Envoi vers WhatsApp ---------- */
+  /* ---------- 5. Envoi : WhatsApp + copie d'archive Netlify ---------- */
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!valider()) return;
@@ -176,38 +175,48 @@ document.addEventListener("DOMContentLoaded", () => {
       `Email : ${v("email")}`,
       `Pays : ${v("pays")}`,
       `Formation : ${pack.nom}`,
-      `Montant : ${formatPrix(pack.prix)}`,
       `Mode de formation : ${v("mode")}`,
+      `Montant : ${formatPrix(pack.prix)}`,
       `Moyen de paiement : ${paiement.nom}`,
-      `Référence de transaction : ${v("reference")}`,
-      `Nom utilisé pour le paiement : ${v("payeur")}`,
+      `Nom du compte ayant payé : ${v("payeur")}`,
+      `Numéro ayant effectué le transfert : ${v("numero")}`,
       "",
       "Je joins ma preuve de paiement."
     ].join("\n");
 
-    // Sauvegarde pour la page de confirmation
+    // 1) Ouvre WhatsApp tout de suite (avant tout autre traitement)
+    const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+
+    // 2) Garde les infos pour la page de confirmation
     try {
       sessionStorage.setItem("themaster_commande", JSON.stringify({
         nom: v("nom"),
         pack: pack.nom,
         montant: formatPrix(pack.prix),
         paiement: paiement.nom,
-        reference: v("reference"),
+        payeur: v("payeur"),
+        numero: v("numero"),
         message: message
       }));
     } catch (err) {}
 
-    const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
-    setTimeout(() => { location.href = "confirmation.html"; }, 700);
+    // 3) Copie d'archive de l'inscription (Netlify Forms, ignorée si indisponible)
+    const donnees = new URLSearchParams(new FormData(form));
+    donnees.set("form-name", "inscription");
+    donnees.set("pack_nom", pack.nom);
+    donnees.set("montant", formatPrix(pack.prix));
+    const envoi = fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: donnees.toString()
+    }).catch(() => {});
+    const delai = new Promise((r) => setTimeout(r, 1200));
+
+    // 4) Page de confirmation
+    Promise.race([envoi, delai]).then(() => { location.href = "confirmation.html"; });
   });
 
   majRecap();
   renderPaiement();
 });
-
-
-
-erreur("g-pack", !selPack.value)
-
-`Montant : ${formatPrix(pack.prix)}`

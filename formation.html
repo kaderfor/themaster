@@ -9,11 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="images/logo.png">
+  <link rel="icon" href="images/logo.png">
 </head>
 <body>
 
-  <!-- ===== EN-TÊTE ===== -->
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="logo"><img src="images/logo.png" alt="THE MASTER" class="logo-img"></a>
@@ -26,39 +25,69 @@
         <a href="entreprendre.html">Entreprendre</a>
         <a href="index.html#formateur">Le formateur</a>
         <a href="index.html#contact">Contact</a>
-        <a href="index.html#choix" class="btn btn-primary">Commencer</a>
+        <a href="index.html#accueil" class="btn btn-primary">Commencer</a>
       </nav>
     </div>
   </header>
 
   <main>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero page-hero">
+    <!-- ================= VUE 1 : PRÉSENTATION ================= -->
+    <section class="hero page-hero" data-view="intro">
       <div class="container">
         <div class="hero-content">
           <span class="eyebrow">Parcours A — Formation uniquement</span>
           <h1>Apprenez, pratiquez, <em>progressez.</em></h1>
-          <p>Trois formations pour développer vos compétences en vente, en création de contenu, en intelligence artificielle et en gestion financière. Sans engagement dans une activité de marketing de réseau.</p>
+          <p>Trois formations pour développer vos compétences en vente, en création de contenu, en intelligence artificielle et en gestion financière. Sans engagement dans une activité de marketing de réseau. Toutes les formations sont proposées en présentiel ou en ligne, selon vos préférences.</p>
           <div class="hero-actions">
             <a href="#packs" class="btn btn-primary">Voir les packs</a>
-            <a href="#comparer" class="btn btn-outline">Comparer les offres</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== PACKS ===== -->
-    <section class="section" id="packs">
+    <section class="section" data-view="intro">
       <div class="container text-center">
-        <span class="eyebrow">Nos formations</span>
-        <h2 class="section-title">Choisissez la formation qui vous correspond</h2>
+        <span class="eyebrow">Paiement</span>
+        <h2 class="section-title">Comment s'inscrire ?</h2>
         <div class="gold-line"></div>
-        <p class="section-sub">Chaque pack contient les éléments du précédent. Toutes les formations sont proposées <strong>en présentiel ou en ligne, selon vos préférences</strong>. Les prix et les contenus sont expliqués clairement, sans surprise.</p>
+        <p class="section-sub">Paiement simple par Mobile Money, vérifié par notre équipe.</p>
+
+        <div class="steps" style="text-align:left;">
+          <div class="step reveal"><h4>Je m'inscris</h4><p>Je choisis mon pack et je remplis le formulaire.</p></div>
+          <div class="step reveal"><h4>Je paie</h4><p>Orange Money, Moov Money ou Wave : les instructions s'affichent.</p></div>
+          <div class="step reveal"><h4>J'envoie ma demande</h4><p>Un message WhatsApp prérempli, avec la capture du paiement.</p></div>
+        </div>
+
+        <div style="margin-top:36px;">
+          <p style="color:var(--muted); margin-bottom:16px;">Une question avant de vous inscrire ?</p>
+          <a data-wa href="#" class="btn btn-whatsapp">💬 Écrire sur WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" data-view="intro">
+      <div class="container text-center">
+        <h2 class="section-title">Vous souhaitez aussi entreprendre ?</h2>
+        <p class="section-sub">Découvrez le parcours B : des packs associant formations et produits, pour envisager une activité avec notre équipe.</p>
+        <a href="entreprendre.html" class="btn btn-primary">Découvrir le parcours entreprendre</a>
+      </div>
+    </section>
+
+    <!-- ================= VUE 2 : LES PACKS ================= -->
+    <section class="section section-alt" id="packs" data-view="packs" hidden>
+      <div class="container">
+        <a href="#" class="back-link">← Retour à la présentation</a>
+
+        <div class="text-center">
+          <span class="eyebrow">Parcours A — Nos formations</span>
+          <h2 class="section-title">Choisissez la formation qui vous correspond</h2>
+          <div class="gold-line"></div>
+          <p class="section-sub">Chaque pack contient les éléments du précédent. En présentiel ou en ligne, selon vos préférences.</p>
+        </div>
 
         <div class="packs-grid" style="text-align:left;">
 
-          <!-- PACK 1 -->
           <div class="pack-card reveal">
             <h3 class="pack-name">Pack 1</h3>
             <p class="pack-desc">Formation vente &amp; création de contenu</p>
@@ -72,7 +101,6 @@
             <a href="inscription.html?pack=pack-1" class="btn btn-dark btn-block">S'inscrire à ce pack</a>
           </div>
 
-          <!-- PACK 2 -->
           <div class="pack-card reveal">
             <h3 class="pack-name">Pack 2</h3>
             <p class="pack-desc">Formation avec accompagnement pratique</p>
@@ -87,7 +115,6 @@
             <a href="inscription.html?pack=pack-2" class="btn btn-dark btn-block">S'inscrire à ce pack</a>
           </div>
 
-          <!-- PACK 3 -->
           <div class="pack-card featured reveal">
             <span class="pack-badge">Formation complète</span>
             <h3 class="pack-name">Pack 3</h3>
@@ -107,84 +134,15 @@
         <div class="notice" style="text-align:left;">
           <strong>À savoir :</strong> la partie financière est pédagogique. Elle vous aide à comprendre les options d'investissement, mais ne garantit ni gain, ni rendement.
         </div>
-      </div>
-    </section>
 
-    <!-- ===== COMPARAISON ===== -->
-    <section class="section section-alt" id="comparer">
-      <div class="container text-center">
-        <span class="eyebrow">Comparer</span>
-        <h2 class="section-title">Quelle formation choisir ?</h2>
-        <div class="gold-line"></div>
-        <p class="section-sub">Voici ce que contient chaque pack, en un coup d'œil.</p>
-
-        <div class="table-wrap">
-          <table class="compare-table">
-            <thead>
-              <tr>
-                <th>Contenu</th>
-                <th>Pack 1</th>
-                <th>Pack 2</th>
-                <th class="col-featured">Pack 3</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Bases et techniques de vente</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-              <tr><td>Présenter une offre, répondre aux objections</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-              <tr><td>Création de contenu</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-              <tr><td>Communication claire et professionnelle</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-              <tr><td>Accompagnement d'une semaine</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-              <tr><td>Initiation pratique à l'IA</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-              <tr><td>Exercices et suivi</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-              <tr><td>Gestion financière</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
-              <tr><td>Organiser revenus et dépenses</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
-              <tr><td>Initiation à l'investissement en bourse</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
-              <tr class="price-row">
-                <td>Prix</td>
-                <td data-prix="pack-1"></td>
-                <td data-prix="pack-2"></td>
-                <td data-prix="pack-3"></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="text-center" style="margin-top:34px;">
+          <a data-wa href="#" class="btn btn-whatsapp">💬 Une question ? Écrivez-nous</a>
         </div>
-        <p class="table-hint">← Faites défiler le tableau →</p>
-      </div>
-    </section>
-
-    <!-- ===== PAIEMENT ===== -->
-    <section class="section">
-      <div class="container text-center">
-        <span class="eyebrow">Paiement</span>
-        <h2 class="section-title">Comment payer ?</h2>
-        <div class="gold-line"></div>
-        <p class="section-sub">Paiement simple par Mobile Money, vérifié par notre équipe.</p>
-
-        <div class="steps" style="text-align:left;">
-          <div class="step reveal"><h4>Je m'inscris</h4><p>Je choisis mon pack et je remplis le formulaire.</p></div>
-          <div class="step reveal"><h4>Je paie</h4><p>Orange Money, Moov Money ou Wave : les instructions s'affichent.</p></div>
-          <div class="step reveal"><h4>J'envoie ma preuve</h4><p>Un message WhatsApp prérempli, avec la capture du SMS.</p></div>
-        </div>
-
-        <div style="margin-top:36px;">
-          <p style="color:var(--muted); margin-bottom:16px;">Une question avant de vous inscrire ?</p>
-          <a data-wa href="#" class="btn btn-whatsapp">💬 Écrire sur WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== AUTRE PARCOURS ===== -->
-    <section class="section section-dark">
-      <div class="container text-center">
-        <h2 class="section-title">Vous souhaitez aussi entreprendre ?</h2>
-        <p class="section-sub">Découvrez le parcours B : des packs associant formations et produits, pour envisager une activité avec notre équipe.</p>
-        <a href="entreprendre.html" class="btn btn-primary">Découvrir le parcours entreprendre</a>
       </div>
     </section>
 
   </main>
 
-  <!-- ===== PIED DE PAGE ===== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -209,7 +167,7 @@
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">© <span data-year></span> THE MASTER. Tous droits réservés.</div>
+      <div class="footer-bottom">© <span data-year></span> THE MASTER. Tous droits réservés. <span class="credit">Site conçu par <a href="https://kaderfor.github.io/portfolio-kader/" target="_blank" rel="noopener">TechLab</a></span></div>
     </div>
   </footer>
 
@@ -219,5 +177,3 @@
   <script src="js/main.js"></script>
 </body>
 </html>
-
-

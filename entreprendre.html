@@ -9,11 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="images/logo.png">
+  <link rel="icon" href="images/logo.png">
 </head>
 <body>
 
-  <!-- ===== EN-TÊTE ===== -->
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="logo"><img src="images/logo.png" alt="THE MASTER" class="logo-img"></a>
@@ -26,15 +25,15 @@
         <a href="entreprendre.html">Entreprendre</a>
         <a href="index.html#formateur">Le formateur</a>
         <a href="index.html#contact">Contact</a>
-        <a href="index.html#choix" class="btn btn-primary">Commencer</a>
+        <a href="index.html#accueil" class="btn btn-primary">Commencer</a>
       </nav>
     </div>
   </header>
 
   <main>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero page-hero">
+    <!-- ================= VUE 1 : PRÉSENTATION ================= -->
+    <section class="hero page-hero" data-view="intro">
       <div class="container">
         <div class="hero-content">
           <span class="eyebrow">Parcours B — Entreprendre avec nous</span>
@@ -48,8 +47,7 @@
       </div>
     </section>
 
-    <!-- ===== L'ACTIVITÉ / FOREVER ===== -->
-    <section class="section" id="activite">
+    <section class="section" id="activite" data-view="intro">
       <div class="container text-center">
         <span class="eyebrow">L'activité</span>
         <h2 class="section-title">Comprendre avant de décider</h2>
@@ -62,8 +60,7 @@
                   data-close-text="Masquer la présentation">En savoir plus sur l'activité</button>
         </div>
 
-        <!-- Section dépliante : présentation de Forever (à compléter) -->
-                <div class="collapsible" id="forever-info" style="text-align:left;">
+        <div class="collapsible" id="forever-info" style="text-align:left;">
           <div class="forever-box">
 
             <h3>Forever en bref</h3>
@@ -104,64 +101,84 @@
             </div>
           </div>
         </div>
-            <h3>Présentation de Forever</h3>
+      </div>
+    </section>
 
-            <!-- À REMPLACER quand le client enverra les informations -->
-            <p>[Présentation de l'entreprise Forever : son histoire, sa mission, sa présence.]</p>
-            <p>[Les produits proposés et leurs usages.]</p>
-            <p>[Le fonctionnement de l'activité : comment se déroule la vente, comment fonctionne le parrainage, comment l'équipe accompagne les nouveaux.]</p>
+    <section class="section section-alt" data-view="intro">
+      <div class="container text-center">
+        <span class="eyebrow">Paiement</span>
+        <h2 class="section-title">Comment s'inscrire ?</h2>
+        <div class="gold-line"></div>
+        <p class="section-sub">Paiement par Mobile Money, vérifié par notre équipe.</p>
 
-            <div class="info-box">
-              <strong>Bon à savoir :</strong> les résultats dépendent des ventes, du travail réalisé, de la régularité et de la manière dont chacun développe son activité. Aucun revenu n'est garanti.
-            </div>
-          </div>
+        <div class="steps" style="text-align:left;">
+          <div class="step reveal"><h4>Je choisis mon pack</h4><p>Et je remplis le formulaire d'inscription.</p></div>
+          <div class="step reveal"><h4>Je paie</h4><p>Orange Money, Moov Money ou Wave.</p></div>
+          <div class="step reveal"><h4>J'envoie ma demande</h4><p>Par WhatsApp, avec un message prérempli.</p></div>
+        </div>
+
+        <div style="margin-top:36px;">
+          <p style="color:var(--muted); margin-bottom:16px;">Des questions avant de choisir un pack ?</p>
+          <a data-wa href="#" class="btn btn-whatsapp">💬 Écrire sur WhatsApp</a>
         </div>
       </div>
     </section>
 
-    <!-- ===== PACKS ===== -->
-    <section class="section section-alt" id="packs">
+    <section class="section section-dark" data-view="intro">
       <div class="container text-center">
-        <span class="eyebrow">Nos packs</span>
-        <h2 class="section-title">Choisissez votre point de départ</h2>
-        <div class="gold-line"></div>
-        <p class="section-sub">Dans chaque pack, vous recevez des produits Forever d'une valeur égale au prix du pack, et une formation incluse en plus. Les formations sont proposées en présentiel ou en ligne, selon vos préférences.</p>
-                      <div class="packs-grid" style="text-align:left;">
+        <h2 class="section-title">Vous préférez vous former uniquement ?</h2>
+        <p class="section-sub">Le parcours A propose trois formations, sans activité de marketing de réseau.</p>
+        <a href="formation.html" class="btn btn-primary">Voir les formations</a>
+      </div>
+    </section>
+
+    <!-- ================= VUE 2 : LES PACKS ================= -->
+    <!-- Images : images/packs/pack-decouverte.jpg, pack-developpement.jpg, pack-demarrage.jpg -->
+    <section class="section section-alt" id="packs" data-view="packs" hidden>
+      <div class="container">
+        <a href="#" class="back-link">← Retour à la présentation</a>
+
+        <div class="text-center">
+          <span class="eyebrow">Parcours B — Nos packs</span>
+          <h2 class="section-title">Choisissez votre point de départ</h2>
+          <div class="gold-line"></div>
+          <p class="section-sub">Dans chaque pack, vous recevez des produits Forever d'une valeur égale au prix du pack, et une formation incluse en plus. Les formations sont proposées en présentiel ou en ligne, selon vos préférences.</p>
+        </div>
+
+        <div class="packs-grid" style="text-align:left;">
 
           <!-- PACK DÉCOUVERTE -->
           <div class="pack-card reveal">
+            <div class="pack-image">
+              <img src="images/packs/pack-decouverte.jpg" alt="Produits du pack découverte" loading="lazy">
+            </div>
             <h3 class="pack-name">Pack découverte</h3>
             <p class="pack-desc">Pour découvrir l'activité</p>
             <div class="pack-price"><span data-prix="pack-decouverte">50 000 FCFA</span></div>
             <div class="pack-price-note">Remise de 5 % sur vos achats de produits Forever</div>
             <ul class="pack-list">
-              <li><strong>Produits inclus :</strong></li>
-              <li>Des produits Forever d'une valeur égale au prix du pack</li>
-              <li><strong>Formation incluse en plus :</strong></li>
+              <li class="list-title"><strong>Produits inclus :</strong></li>
+              <li>Des produits Forever d'une valeur égale à 50 000 FCFA</li>
+              <li class="list-title"><strong>Formation incluse en plus :</strong></li>
               <li>Formation du Pack 1 (parcours A) : bases et techniques de vente, présenter une offre et répondre aux objections, création de contenu, communication claire et professionnelle</li>
-              <li><strong>Vous recevez concrètement :</strong></li>
-              <li>Des produits à la valeur de votre investissement</li>
-              <li>Une formation, en présentiel ou en ligne</li>
-              <li>Une remise de 5 % sur tout achat de produits Forever</li>
             </ul>
             <a href="inscription.html?pack=pack-decouverte" class="btn btn-dark btn-block">Choisir ce pack</a>
           </div>
 
           <!-- PACK DÉVELOPPEMENT -->
           <div class="pack-card reveal">
+            <div class="pack-image">
+              <img src="images/packs/pack-developpement.jpg" alt="Produits du pack développement" loading="lazy">
+            </div>
             <h3 class="pack-name">Pack développement</h3>
             <p class="pack-desc">Pour démarrer avec un contenu plus complet</p>
             <div class="pack-price"><span data-prix="pack-developpement">150 000 FCFA</span></div>
-            <div class="pack-price-note">Remise de 5 % sur vos achats de produits Forever</div>
+            <div class="pack-price-note">Remise de 15 % sur vos achats de produits Forever</div>
             <ul class="pack-list">
-              <li><strong>Produits inclus :</strong></li>
-              <li>Des produits Forever d'une valeur égale au prix du pack</li>
-              <li><strong>Formation incluse en plus :</strong></li>
+              <li class="list-title"><strong>Produits inclus :</strong></li>
+              <li>Des produits Forever d'une valeur égale à 150 000 FCFA</li>
+              <li class="list-title"><strong>Formation incluse en plus :</strong></li>
               <li>Formation du Pack 2 (parcours A) : tout le contenu du Pack 1, plus un accompagnement d'une semaine, une initiation pratique à l'intelligence artificielle, la création de contenus pendant la semaine, des exercices et un suivi</li>
-              <li><strong>Vous recevez concrètement :</strong></li>
-              <li>Des produits à la valeur de votre investissement</li>
-              <li>Une formation, en présentiel ou en ligne</li>
-              <li>Une remise de 5 % sur tout achat de produits Forever</li>
             </ul>
             <a href="inscription.html?pack=pack-developpement" class="btn btn-dark btn-block">Choisir ce pack</a>
           </div>
@@ -169,19 +186,18 @@
           <!-- PACK DÉMARRAGE -->
           <div class="pack-card featured reveal">
             <span class="pack-badge">Formule la plus complète</span>
+            <div class="pack-image">
+              <img src="images/packs/pack-demarrage.jpg" alt="Produits du pack démarrage" loading="lazy">
+            </div>
             <h3 class="pack-name">Pack démarrage</h3>
             <p class="pack-desc">Pour démarrer avec une formule complète</p>
             <div class="pack-price"><span data-prix="pack-demarrage">310 000 FCFA</span></div>
             <div class="pack-price-note">Remise de 30 % sur vos achats de produits Forever</div>
             <ul class="pack-list">
-              <li><strong>Produits inclus :</strong></li>
-              <li>Des produits Forever d'une valeur égale au prix du pack</li>
-              <li><strong>Formation incluse en plus :</strong></li>
+              <li class="list-title"><strong>Produits inclus :</strong></li>
+              <li>Des produits Forever d'une valeur égale à 310 000 FCFA</li>
+              <li class="list-title"><strong>Formation incluse en plus :</strong></li>
               <li>Formation du Pack 3 (parcours A) : tous les contenus des Packs 1 et 2, plus une formation sur la gestion financière, des notions pour organiser ses revenus et ses dépenses, et une initiation aux principes de l'investissement en bourse</li>
-              <li><strong>Vous recevez concrètement :</strong></li>
-              <li>Des produits à la valeur de votre investissement</li>
-              <li>Une formation, en présentiel ou en ligne</li>
-              <li>Une remise de 30 % sur tout achat de produits Forever</li>
             </ul>
             <a href="inscription.html?pack=pack-demarrage" class="btn btn-primary btn-block">Choisir ce pack</a>
           </div>
@@ -194,8 +210,7 @@
       </div>
     </section>
 
-    <!-- ===== CONDITIONS ===== -->
-    <section class="section">
+    <section class="section" data-view="packs" hidden>
       <div class="container">
         <div class="text-center">
           <span class="eyebrow">Transparence</span>
@@ -204,48 +219,23 @@
         </div>
 
         <div class="info-box" style="max-width:760px; margin:0 auto;">
-          <!-- À COMPLÉTER avec les vraies conditions du client -->
           <ul class="check-list">
             <li>Chaque pack comprend des produits Forever d'une valeur égale à son prix, et une formation incluse en plus.</li>
-            <li>[Délai de validation : votre paiement est vérifié manuellement par notre équipe.]</li>
+            <li>Les packs découverte et développement donnent droit à une remise de 5 % sur tout achat de produits Forever ; le pack démarrage, à une remise de 30 %.</li>
+            <li>Les formations sont proposées en présentiel ou en ligne, selon vos préférences.</li>
+            <li>Votre paiement est vérifié manuellement par notre équipe avant la confirmation de votre accès.</li>
+            <li>Aucun revenu n'est garanti : les résultats dépendent de votre travail, de vos ventes et de votre régularité.</li>
           </ul>
         </div>
-      </div>
-    </section>
 
-    <!-- ===== COMMENT S'INSCRIRE ===== -->
-    <section class="section section-alt">
-      <div class="container text-center">
-        <span class="eyebrow">Paiement</span>
-        <h2 class="section-title">Comment s'inscrire ?</h2>
-        <div class="gold-line"></div>
-        <p class="section-sub">Paiement par Mobile Money, vérifié par notre équipe.</p>
-
-        <div class="steps" style="text-align:left;">
-          <div class="step reveal"><h4>Je choisis mon pack</h4><p>Et je remplis le formulaire d'inscription.</p></div>
-          <div class="step reveal"><h4>Je paie</h4><p>Orange Money, Moov Money ou Wave.</p></div>
-          <div class="step reveal"><h4>J'envoie ma preuve</h4><p>Par WhatsApp, avec un message prérempli.</p></div>
+        <div class="text-center" style="margin-top:34px;">
+          <a data-wa href="#" class="btn btn-whatsapp">💬 Une question ? Écrivez-nous</a>
         </div>
-
-        <div style="margin-top:36px;">
-          <p style="color:var(--muted); margin-bottom:16px;">Des questions avant de choisir un pack ?</p>
-          <a data-wa href="#" class="btn btn-whatsapp">💬 Écrire sur WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== AUTRE PARCOURS ===== -->
-    <section class="section section-dark">
-      <div class="container text-center">
-        <h2 class="section-title">Vous préférez vous former uniquement ?</h2>
-        <p class="section-sub">Le parcours A propose trois formations, sans activité de marketing de réseau.</p>
-        <a href="formation.html" class="btn btn-primary">Voir les formations</a>
       </div>
     </section>
 
   </main>
 
-  <!-- ===== PIED DE PAGE ===== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -270,7 +260,7 @@
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">© <span data-year></span> THE MASTER. Tous droits réservés.</div>
+      <div class="footer-bottom">© <span data-year></span> THE MASTER. Tous droits réservés. <span class="credit">Site conçu par <a href="https://kaderfor.github.io/portfolio-kader/" target="_blank" rel="noopener">TechLab</a></span></div>
     </div>
   </footer>
 
@@ -280,7 +270,3 @@
   <script src="js/main.js"></script>
 </body>
 </html>
-
-
-
-Conditions d’achat et de participation

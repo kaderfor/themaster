@@ -6,6 +6,12 @@ const CONFIG = {
   // Contacts
   whatsapp: "22671258183", // indicatif Burkina (226) + numéro, sans + ni espaces
   telephone: "+226 71 25 81 83",
+    // Vidéos de témoignages (Cloudinary) : collez l'URL de chaque vidéo dans "url"
+  temoignages: [
+    { nom: "NAKELSI Desiré", detail: "Parcours B", url: "https://res.cloudinary.com/h4s2nxus/video/upload/v1792098246/temoignage-1.mp4.mp4" },
+    { nom: "Nom du témoin 2", detail: "Formation suivie", url: "" },
+    { nom: "Nom du témoin 3", detail: "Formation suivie", url: "" }
+  ],
   email: "contact@themaster.com", // À REMPLACER par le vrai mail du client
 
   // Packs

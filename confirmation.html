@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demande envoyée — THE MASTER</title>
+  <title>Inscription réussie — THE MASTER</title>
   <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="images/logo.png">
+  <link rel="icon" href="images/logo.png">
 </head>
 <body>
 
-  <!-- ===== EN-TÊTE ===== -->
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="logo"><img src="images/logo.png" alt="THE MASTER" class="logo-img"></a>
@@ -26,7 +25,7 @@
         <a href="entreprendre.html">Entreprendre</a>
         <a href="index.html#formateur">Le formateur</a>
         <a href="index.html#contact">Contact</a>
-        <a href="index.html#choix" class="btn btn-primary">Commencer</a>
+        <a href="index.html#accueil" class="btn btn-primary">Commencer</a>
       </nav>
     </div>
   </header>
@@ -36,18 +35,21 @@
       <div class="container">
         <div class="confirm-card">
 
-          <div class="confirm-icon">⏳</div>
-          <span class="status-badge status-pending">Paiement en attente de confirmation</span>
-          <h1 style="margin-top:18px;" id="titre">Merci, votre demande est enregistrée</h1>
-          <p style="color:var(--muted);" id="intro">Notre équipe va vérifier votre paiement. Votre accès sera confirmé une fois cette vérification terminée.</p>
+          <div class="confirm-icon" style="background:#d4f5df;">✅</div>
+          <span class="status-badge status-pending">Paiement en cours de vérification</span>
+          <h1 style="margin-top:18px;" id="titre">Inscription réussie !</h1>
+          <p style="color:var(--muted);" id="intro">Nous vérifions votre paiement et vous serez contacté très bientôt.</p>
 
-          <!-- Récapitulatif (rempli par le script) -->
           <div class="payment-details" id="recap" style="text-align:left; margin-top:26px;"></div>
 
-          <div class="steps" style="text-align:left;">
-            <div class="step"><h4>Envoyez votre preuve</h4><p>Dans WhatsApp, joignez la capture du SMS de paiement et envoyez le message.</p></div>
+          <div class="info-box" style="text-align:left; margin-top:22px;" id="rappel">
+            <strong>Dernière vérification :</strong> avez-vous bien envoyé le message WhatsApp avec la capture de votre paiement ? Sans ce message, nous ne pouvons pas traiter votre demande.
+          </div>
+
+          <div class="steps" style="text-align:left; margin-top:26px;">
+            <div class="step"><h4>Envoi de la preuve</h4><p>Dans WhatsApp, joignez la capture du SMS de paiement et envoyez le message.</p></div>
             <div class="step"><h4>Vérification</h4><p>Notre équipe contrôle votre paiement manuellement.</p></div>
-            <div class="step"><h4>Confirmation</h4><p>Une fois validé, vous recevez votre accès et les prochaines étapes.</p></div>
+            <div class="step"><h4>Prise de contact</h4><p>Vous êtes contacté avec votre accès et les prochaines étapes.</p></div>
           </div>
 
           <div style="display:flex; flex-direction:column; gap:12px; margin-top:8px;">
@@ -55,13 +57,12 @@
             <a href="index.html" class="btn btn-dark btn-block">Retour à l'accueil</a>
           </div>
 
-          <p class="pending-note">Un doute sur votre paiement ? Écrivez-nous sur WhatsApp en indiquant votre nom et votre référence de transaction.</p>
+          <p class="pending-note">Un doute sur votre paiement ? Écrivez-nous sur WhatsApp en indiquant votre nom.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ===== PIED DE PAGE ===== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -86,7 +87,7 @@
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">© <span data-year></span> THE MASTER. Tous droits réservés.</div>
+      <div class="footer-bottom">© <span data-year></span> THE MASTER. Tous droits réservés. <span class="credit">Site conçu par <a href="https://kaderfor.github.io/portfolio-kader/" target="_blank" rel="noopener">TechLab</a></span></div>
     </div>
   </footer>
 
@@ -104,18 +105,20 @@
       if (!commande) {
         // Page ouverte sans inscription préalable
         recap.style.display = "none";
+        document.getElementById("rappel").style.display = "none";
         document.getElementById("titre").textContent = "Aucune inscription en cours";
         document.getElementById("intro").textContent = "Choisissez un pack pour vous inscrire, ou contactez-nous si vous avez déjà envoyé votre demande.";
         return;
       }
 
-      document.getElementById("titre").textContent = "Merci " + commande.nom.split(" ")[0] + ", votre demande est enregistrée";
+      document.getElementById("titre").textContent = "Inscription réussie, " + commande.nom.split(" ")[0] + " !";
 
       const lignes = [
         ["Pack", commande.pack],
         ["Montant", commande.montant],
         ["Moyen de paiement", commande.paiement],
-        ["Référence de transaction", commande.reference]
+        ["Compte ayant payé", commande.payeur],
+        ["Numéro du transfert", commande.numero]
       ];
       lignes.forEach(([label, valeur]) => {
         const div = document.createElement("div");
@@ -134,9 +137,8 @@
       btn.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(commande.message);
       btn.target = "_blank";
       btn.rel = "noopener";
-      btn.removeAttribute("data-wa"); // empêche main.js de remplacer ce lien
+      btn.removeAttribute("data-wa");
     });
   </script>
 </body>
 </html>
-
